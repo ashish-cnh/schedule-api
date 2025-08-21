@@ -1,5 +1,6 @@
 {
-  "name": "schedule-api",
+  "name": "schedule-api-v2",
   "version": "1.0.0",
-  "type": "module"
+  "main": "index.js",
+  "license": "MIT"
 }
