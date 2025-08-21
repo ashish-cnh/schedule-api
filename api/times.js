@@ -18,13 +18,14 @@ export default function handler(req, res) {
   tomorrow.setDate(today.getDate() + 1);
 
   // Params
-  const dateParam = req.query.date || tomorrow.toISOString().split("T")[0]; // YYYY-MM-DD
+  const dateParam = req.query.date || `${String(tomorrow.getDate()).padStart(2,"0")}-${String(tomorrow.getMonth()+1).padStart(2,"0")}-${tomorrow.getFullYear()}`; // DD-MM-YYYY
+  const [day, month, year] = dateParam.split("-").map(Number);
+  const selectedDate = new Date(year, month - 1, day);
+
   const start = parseInt(req.query.start) || 10;
   const end = parseInt(req.query.end) || 17;
 
-  const selectedDate = new Date(dateParam);
   const times = [];
-
   for (let hour = start; hour <= end; hour++) {
     times.push(formatTime(selectedDate, hour));
   }
